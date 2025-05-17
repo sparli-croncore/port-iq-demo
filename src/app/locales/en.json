@@ -1,0 +1,24 @@
+{
+  "deliveries": {
+    "title": "Deliveries",
+    "noData": "No delivery data available.",
+    "deliveryId": "Delivery ID",
+    "port": "Port",
+    "container": "Container",
+    "eta": "ETA",
+    "route": "Route",
+    "track": "Track",
+    "modify": "Modify"
+  },
+  "notifications": {
+    "title": "Notifications"
+  },
+  "aichat": {
+    "title": "AI Assistance",
+    "logoAlt": "Logo",
+    "placeholder": "Type your message...",
+    "typing": "typing...",
+    "noResponse": "No response received."
+  }
+  
+}

@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: inter, Arial, Helvetica, sans-serif;
+}
+
+/* Add to your global CSS */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #2D3254;
+  border-radius: 4px;
+}
+/* In your global CSS */
+[dir="rtl"] .rotate-on-rtl {
+  transform: rotate(270deg);
+}
+
+[dir="rtl"] .rotatemore-on-rtl {
+  transform: rotate(180deg);
+}
