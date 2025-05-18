@@ -114,8 +114,6 @@ export default function AIChat() {
     container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
   }, [chatHistory]);
 
-  // Clear on Tab Close or Leave
-
   return (
     <div className="bg-gradient-to-r from-[#0d113c] to-[#10132c] rounded-3xl p-6 col-span-2 flex flex-col h-full max-h-screen">
       <div className="flex items-center justify-between mb-4">

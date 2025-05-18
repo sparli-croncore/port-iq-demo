@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import Image from "next/image";
+
 import { useRouter } from "next/navigation";
 import { useAppState } from "@/app/context/AppStateContext";
 
@@ -89,13 +89,10 @@ export default function SplashScreen() {
       {/* <h1 className="text-white text-2xl animate-pulse">
         
       </h1> */}
-      <Image
-        src="/images/xx.png"
-        alt="Logo1"
-        height={300}
-        width={300}
-        className="animate-pulse"
-      />
+      <div className="flex flex-col-reverse animate-pulse text-white items-center">
+        <h1 className="text-2xl font-bold">KUWAIT PORTS AUTHORITY</h1>
+        <h1 className="text-3xl font-bold">مؤسسة الموانئ الكويتية</h1>
+      </div>
     </div>
   );
 }
