@@ -19,7 +19,7 @@ export default function Notifications() {
           alt="Logo"
           height={20}
           width={20}
-          className="w-10 h-10 rotate-on-rtl"
+          className="w-10 h-10 rotate-on-rtl hidden lg:block"
         />
       </div>
       <div className="space-y-4 max-h-[300px] overflow-y-auto">

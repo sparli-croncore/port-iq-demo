@@ -39,6 +39,7 @@ export default function AIChat() {
           },
         }),
       });
+      console.log("localStorage:", localStorage.getItem("language"));
 
       if (!res.ok) return;
 
@@ -109,34 +110,16 @@ export default function AIChat() {
     const container = chatContainerRef.current;
     if (!container) return;
 
-    const isNearBottom =
-      container.scrollHeight - container.scrollTop <=
-      container.clientHeight + 100;
-
-    if (isNearBottom) {
-      container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
-    }
-  }, [chatHistory, isTyping]);
+    // Always scroll to the bottom when a new message arrives
+    container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
+  }, [chatHistory]);
 
   // Clear on Tab Close or Leave
-  useEffect(() => {
-    const handlePageHide = (event: PageTransitionEvent) => {
-      if (!event.persisted) {
-        dispatch({ type: "CLEAR_CHAT" });
-        dispatch({ type: "SET_NOTIFICATIONS", payload: [] });
-      }
-    };
-
-    window.addEventListener("pagehide", handlePageHide);
-    return () => {
-      window.removeEventListener("pagehide", handlePageHide);
-    };
-  }, [dispatch]);
 
   return (
     <div className="bg-gradient-to-r from-[#0d113c] to-[#10132c] rounded-3xl p-6 col-span-2 flex flex-col h-full max-h-screen">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-3xl font-semibold text-white">
+        <h2 className="lg:text-3xl text-2xl font-semibold text-white">
           {t("aichat.title")} {/* Translate the title */}
         </h2>
         <Image
@@ -144,21 +127,21 @@ export default function AIChat() {
           alt={t("aichat.logoAlt", "Logo")} // Translate alt text
           height={20}
           width={20}
-          className="w-10 h-10 rotate-on-rtl"
+          className="w-10 h-10 rotate-on-rtl hidden lg:block"
         />
       </div>
 
       <div
         ref={chatContainerRef}
-        className="flex-1 overflow-y-auto max-h-[calc(100vh-300px)] space-y-4 pr-2 custom-scrollbar"
+        className="flex-1 flex overflow-y-auto flex-col max-h-[calc(100vh-320px)] space-y-4 pr-2 custom-scrollbar"
       >
         {chatHistory.map((msg, idx) => (
           <div
             key={idx}
-            className={`p-3 rounded-3xl text-md max-w-2xl leading-relaxed ${
+            className={`px-4 py-2 rounded-2xl lg:text-md text-sm max-w-2xl leading-relaxed ${
               msg.sender === "assistant"
-                ? "bg-[#FFFFFF33] text-gray-200 self-start"
-                : "bg-gradient-to-r from-[#8974FF] to-[#149CFD] text-white self-end"
+                ? "bg-[#FFFFFF33] text-gray-200 self-start "
+                : "bg-gradient-to-r from-[#8974FF] to-[#149CFD] text-white self-end max-w-[60%] min-w-[100px]"
             }`}
             style={{ marginBottom: "12px" }}
           >
@@ -181,7 +164,7 @@ export default function AIChat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
-          className="flex-1 bg-[#2D3254] text-white p-2 rounded-3xl text-sm focus:outline-none"
+          className="flex-1 bg-[#2D3254] text-white p-2 rounded-3xl lg:text-sm text-[10px] focus:outline-none"
           placeholder={t("aichat.placeholder")}
         />
         <button
