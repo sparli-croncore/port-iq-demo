@@ -22,3 +22,7 @@ body {
 [dir="rtl"] .rotatemore-on-rtl {
   transform: rotate(180deg);
 }
+
+[dir="rtl"] .margin-on-rtl {
+  margin-right: 5rem;
+}
