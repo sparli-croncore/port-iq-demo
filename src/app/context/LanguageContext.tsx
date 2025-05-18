@@ -19,34 +19,38 @@ export const LanguageProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [language, setLanguage] = useState<Language>(() => {
-    if (typeof window !== "undefined") {
-      return (localStorage.getItem("language") as Language) || "ar";
-    }
-    return "ar"; // Default fallback on SSR
-  });
+  const [language, setLanguage] = useState<Language>("ar"); // Always start with 'ar'
 
   const applyLanguageSettings = (lang: Language) => {
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
   };
 
+  useEffect(() => {
+    // On mount, force language to 'ar' and clear any previous language setting
+    if (typeof window !== "undefined") {
+      localStorage.setItem("language", "ar"); // Reset localStorage to 'ar'
+      setLanguage("ar");
+      applyLanguageSettings("ar");
+    }
+  }, []); // Empty dependency array to run only on mount
+
   const toggleLanguage = () => {
     const newLang = language === "ar" ? "en" : "ar";
     setLanguage(newLang);
-    localStorage.setItem("language", newLang);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("language", newLang); // Save new language
+    }
     applyLanguageSettings(newLang);
   };
 
   const setLanguageDirect = (lang: Language) => {
     setLanguage(lang);
-    localStorage.setItem("language", lang);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("language", lang);
+    }
     applyLanguageSettings(lang);
   };
-
-  useEffect(() => {
-    applyLanguageSettings(language);
-  }, [language]);
 
   return (
     <LanguageContext.Provider

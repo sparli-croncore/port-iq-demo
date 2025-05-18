@@ -86,14 +86,14 @@ export const AppStateProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    const storedState = localStorage.getItem("appState");
+    const storedState = sessionStorage.getItem("appState");
     if (storedState) {
       dispatch({ type: "SET_FULL_STATE", payload: JSON.parse(storedState) });
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("appState", JSON.stringify(state));
+    sessionStorage.setItem("appState", JSON.stringify(state));
   }, [state]);
 
   return (
