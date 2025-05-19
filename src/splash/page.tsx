@@ -90,8 +90,8 @@ export default function SplashScreen() {
         
       </h1> */}
       <div className="flex flex-col-reverse animate-pulse text-white items-center">
-        <h1 className="text-2xl font-bold">KUWAIT PORTS AUTHORITY</h1>
-        <h1 className="text-3xl font-bold">مؤسسة الموانئ الكويتية</h1>
+        <h1 className="text-4xl font-bold">Smart Ports</h1>
+        <h1 className="text-5xl font-bold">المنافذ الذكية</h1>
       </div>
     </div>
   );
